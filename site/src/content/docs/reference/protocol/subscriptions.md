@@ -20,10 +20,10 @@ description: Protocol messages in the subscriptions family.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `categories` | `string[]` | Yes | Notification categories to subscribe to (e.g. "space.completed", "turn.failed"). |
+| `categories` | `string[]` | Yes | — |
 
 ### UnsubscribeNotificationsPayload
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `categories` | `string[]` | Yes | Notification categories to unsubscribe from. |
+| `categories` | `string[]` | Yes | — |

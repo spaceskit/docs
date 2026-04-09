@@ -24,8 +24,9 @@ description: Protocol messages in the turns family.
 |-------|------|----------|-------------|
 | `spaceUid` | `string` | Yes | — |
 | `input` | `string` | Yes | — |
-| `targetAgentId` | `string` | No | Optionally target a specific agent. |
-| `replyToTurnId` | `string` | No | Optional turn ID this is a reply to (threading). |
+| `targetAgentId` | `string` | No | — |
+| `replyToTurnId` | `string` | No | — |
+| `accessMode` | `"default" \| "full_access"` | No | — |
 
 ### ResumeFeedbackPayload
 
@@ -35,6 +36,7 @@ description: Protocol messages in the turns family.
 | `turnId` | `string` | Yes | — |
 | `response` | `"approve" \| "reject" \| "revise" \| "defer"` | Yes | — |
 | `revision` | `string` | No | — |
+| `approvalGrant` | `ApprovalGrantPayload` | No | — |
 
 ### TurnEventPayload
 
@@ -43,12 +45,24 @@ description: Protocol messages in the turns family.
 | `spaceId` | `string` | Yes | — |
 | `spaceUid` | `string` | Yes | — |
 | `turnId` | `string` | Yes | — |
-| `eventType` | `"started" \| "streaming" \| "tool_call" \| "feedback_requested" \| "rate_limited" \| "state_changed" \| "completed" \| "failed"` | Yes | — |
+| `rootTurnId` | `string` | No | — |
+| `agentId` | `string` | No | — |
+| `conversationTopology` | `string` | No | — |
+| `transcriptVisibility` | `string` | No | — |
+| `eventType` | `\| "started"
+    \| "streaming"
+    \| "tool_call"
+    \| "feedback_requested"
+    \| "rate_limited"
+    \| "state_changed"
+    \| "completed"
+    \| "cancelled"
+    \| "failed"` | Yes | — |
 | `data` | `unknown` | Yes | — |
+| `typedPayload` | `TypedTurnEventPayload` | No | — |
+| `ts` | `string` | No | — |
 
 ### TurnStreamPayload
-
-> Real-time streaming chunk sent during agent turn execution.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -56,6 +70,6 @@ description: Protocol messages in the turns family.
 | `spaceUid` | `string` | Yes | — |
 | `turnId` | `string` | Yes | — |
 | `agentId` | `string` | Yes | — |
-| `delta` | `string` | Yes | Incremental text chunk (delta). |
-| `seq` | `number` | Yes | Sequence number for ordering. |
-| `done` | `boolean` | Yes | Whether this is the final chunk. |
+| `delta` | `string` | Yes | — |
+| `seq` | `number` | Yes | — |
+| `done` | `boolean` | Yes | — |

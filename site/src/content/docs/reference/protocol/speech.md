@@ -47,7 +47,7 @@ description: Protocol messages in the speech family.
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
 | `sessionId` | `string` | Yes | — |
-| `sequenceNo` | `number` | No | Proto-aligned alias for sequence. |
+| `sequenceNo` | `number` | No | — |
 | `sequence` | `number` | Yes | — |
 | `audioBase64` | `string` | Yes | — |
 | `sampleRateHz` | `number` | No | — |
@@ -75,8 +75,8 @@ description: Protocol messages in the speech family.
 | `sessionId` | `string` | Yes | — |
 | `spaceId` | `string` | Yes | — |
 | `spaceUid` | `string` | Yes | — |
-| `type` | `string` | No | Proto-aligned enum-like event category. |
-| `message` | `string` | No | Proto-aligned human message. |
+| `type` | `string` | No | — |
+| `message` | `string` | No | — |
 | `state` | `"idle" \| "running" \| "stopped" \| "interrupted" \| "ended"` | Yes | — |
 | `eventType` | `string` | Yes | — |
 | `providerSource` | `VoiceProviderSourcePayload` | No | — |

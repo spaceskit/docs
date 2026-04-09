@@ -27,19 +27,19 @@ description: Protocol messages in the auth family.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `publicKey` | `string` | Yes | Ed25519 public key (base64). |
-| `signature` | `string` | Yes | Signed challenge response (base64). |
-| `clientType` | `string` | Yes | Client identity hint (e.g. "macOS-app", "cli", "adapter"). |
+| `publicKey` | `string` | Yes | — |
+| `signature` | `string` | Yes | — |
+| `clientType` | `string` | Yes | — |
 | `clientVersion` | `string` | Yes | — |
-| `deviceId` | `string` | No | Optional stable device identifier for zero-trust device lifecycle controls. |
-| `devicePublicKey` | `string` | No | Optional device identity public key. |
-| `deviceProofSignature` | `string` | No | Optional signature proving possession of device key material. |
+| `deviceId` | `string` | No | — |
+| `devicePublicKey` | `string` | No | — |
+| `deviceProofSignature` | `string` | No | — |
 
 ### SubscribePayload
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `spaceUids` | `string[]` | Yes | Space UIDs to subscribe to for real-time events. |
+| `spaceUids` | `string[]` | Yes | — |
 
 ### SubscribeResponsePayload
 
@@ -112,7 +112,7 @@ description: Protocol messages in the auth family.
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
-| `ttlSeconds` | `number` | No | Requested token lifetime in seconds. The gateway may clamp this to an allowed range. |
+| `ttlSeconds` | `number` | No | — |
 
 ### AuthIssueHttpPrincipalTokenResponsePayload
 
@@ -132,4 +132,4 @@ description: Protocol messages in the auth family.
 |-------|------|----------|-------------|
 | `success` | `boolean` | Yes | — |
 | `reason` | `string` | No | — |
-| `challenge` | `string` | No | Challenge to sign (sent before auth is complete). |
+| `challenge` | `string` | No | — |

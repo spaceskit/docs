@@ -5,7 +5,7 @@ description: Protocol messages in the gateway family.
 
 <!-- AUTO-GENERATED — re-run: bun run docs:generate -->
 
-> 41 message types in the **gateway** family.
+> 47 message types in the **gateway** family.
 
 ## Overview
 
@@ -52,6 +52,12 @@ description: Protocol messages in the gateway family.
 | `GATEWAY_LIST_CAPABILITY_GRANTS` | `gateway.list_capability_grants` | Client → Gateway | [`GatewayListCapabilityGrantsPayload`](#gatewaylistcapabilitygrantspayload) | [`GatewayListCapabilityGrantsResponsePayload`](#gatewaylistcapabilitygrantsresponsepayload) |
 | `GATEWAY_GRANT_CAPABILITY` | `gateway.grant_capability` | Client → Gateway | [`GatewayGrantCapabilityPayload`](#gatewaygrantcapabilitypayload) | [`GatewayGrantCapabilityResponsePayload`](#gatewaygrantcapabilityresponsepayload) |
 | `GATEWAY_REVOKE_CAPABILITY` | `gateway.revoke_capability` | Client → Gateway | [`GatewayRevokeCapabilityPayload`](#gatewayrevokecapabilitypayload) | [`GatewayRevokeCapabilityResponsePayload`](#gatewayrevokecapabilityresponsepayload) |
+| `GATEWAY_GET_TOOL_POLICY` | `gateway.get_tool_policy` | Client → Gateway | [`GatewayGetToolPolicyPayload`](#gatewaygettoolpolicypayload) | [`GatewayGetToolPolicyResponsePayload`](#gatewaygettoolpolicyresponsepayload) |
+| `GATEWAY_UPDATE_TOOL_POLICY` | `gateway.update_tool_policy` | Client → Gateway | [`GatewayUpdateToolPolicyPayload`](#gatewayupdatetoolpolicypayload) | [`GatewayUpdateToolPolicyResponsePayload`](#gatewayupdatetoolpolicyresponsepayload) |
+| `GATEWAY_GET_WORKSPACE_DEFAULTS` | `gateway.get_workspace_defaults` | Client → Gateway | [`GatewayGetWorkspaceDefaultsPayload`](#gatewaygetworkspacedefaultspayload) | [`GatewayGetWorkspaceDefaultsResponsePayload`](#gatewaygetworkspacedefaultsresponsepayload) |
+| `GATEWAY_SET_WORKSPACE_DEFAULTS` | `gateway.set_workspace_defaults` | Client → Gateway | [`GatewaySetWorkspaceDefaultsPayload`](#gatewaysetworkspacedefaultspayload) | [`GatewaySetWorkspaceDefaultsResponsePayload`](#gatewaysetworkspacedefaultsresponsepayload) |
+| `GATEWAY_GET_EXTERNAL_CONNECTIVITY` | `gateway.get_external_connectivity` | Client → Gateway | [`GatewayGetExternalConnectivityPayload`](#gatewaygetexternalconnectivitypayload) | [`GatewayGetExternalConnectivityResponsePayload`](#gatewaygetexternalconnectivityresponsepayload) |
+| `GATEWAY_SET_EXTERNAL_CONNECTIVITY` | `gateway.set_external_connectivity` | Client → Gateway | [`GatewaySetExternalConnectivityPayload`](#gatewaysetexternalconnectivitypayload) | [`GatewaySetExternalConnectivityResponsePayload`](#gatewaysetexternalconnectivityresponsepayload) |
 
 ## Payloads
 
@@ -120,8 +126,6 @@ description: Protocol messages in the gateway family.
 
 ### GatewayDiscoverLocalAgentsPayload
 
-> Gateway admin: discover locally installed execution clients.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -133,8 +137,6 @@ description: Protocol messages in the gateway family.
 | `agents` | `DiscoveredLocalAgentPayload[]` | Yes | — |
 
 ### GatewayListProviderConfigsPayload
-
-> Gateway admin: list model runtime configurations.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -180,8 +182,6 @@ description: Protocol messages in the gateway family.
 
 ### GatewayListAvailableModelsPayload
 
-> Gateway admin: discover models available for configured runtimes.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -195,8 +195,6 @@ description: Protocol messages in the gateway family.
 | `generatedAt` | `string` | Yes | — |
 
 ### GatewayListProviderCatalogsPayload
-
-> Gateway admin: list runtime catalogs grouped by integration class.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -243,8 +241,6 @@ description: Protocol messages in the gateway family.
 
 ### GatewayGetProviderTelemetryPayload
 
-> Gateway admin: read telemetry for configured runtimes.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -258,8 +254,6 @@ description: Protocol messages in the gateway family.
 | `generatedAt` | `string` | Yes | — |
 
 ### GatewayGetLocalUsageTelemetryPayload
-
-> Gateway admin: read local runtime usage telemetry with local sessions/tokens + quota windows.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -275,8 +269,6 @@ description: Protocol messages in the gateway family.
 
 ### GatewayGetProviderSettingsPayload
 
-> Gateway admin: fetch full runtime settings for one configured runtime.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -290,8 +282,6 @@ description: Protocol messages in the gateway family.
 
 ### GatewayUpdateProviderSettingsPayload
 
-> Gateway admin: update gateway-level runtime settings (catalog + allowlist).
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -302,6 +292,7 @@ description: Protocol messages in the gateway family.
 | `baseURL` | `string` | No | — |
 | `allowedModels` | `string[]` | No | — |
 | `allowCustomModel` | `boolean` | No | — |
+| `nativeCliToolsEnabled` | `boolean` | No | — |
 
 ### GatewayUpdateProviderSettingsResponsePayload
 
@@ -311,8 +302,6 @@ description: Protocol messages in the gateway family.
 
 ### GatewaySetProviderConfigPayload
 
-> Gateway admin: update one runtime configuration.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -323,6 +312,7 @@ description: Protocol messages in the gateway family.
 | `baseURL` | `string` | No | — |
 | `allowedModels` | `string[]` | No | — |
 | `allowCustomModel` | `boolean` | No | — |
+| `nativeCliToolsEnabled` | `boolean` | No | — |
 
 ### GatewaySetProviderConfigResponsePayload
 
@@ -331,8 +321,6 @@ description: Protocol messages in the gateway family.
 | `config` | `ProviderRuntimeConfigPayload` | Yes | — |
 
 ### GatewayRemoveProviderConfigPayload
-
-> Gateway admin: remove one runtime configuration.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -346,8 +334,6 @@ description: Protocol messages in the gateway family.
 | `providerId` | `string` | Yes | — |
 
 ### GatewayFactoryResetPayload
-
-> Gateway admin: destructive factory reset for one gateway runtime.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -365,8 +351,6 @@ description: Protocol messages in the gateway family.
 | `rowsDeleted` | `number` | Yes | — |
 
 ### GatewayProvisionLocalProfilePayload
-
-> Gateway admin: provision a profile for a discovered local client.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -678,3 +662,78 @@ description: Protocol messages in the gateway family.
 | `principalId` | `string` | Yes | — |
 | `deviceId` | `string` | Yes | — |
 | `grant` | `GatewayCapabilityGrantPayload` | No | — |
+
+### GatewayGetToolPolicyPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+
+### GatewayGetToolPolicyResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `policy` | `ToolAccessPolicyPayload` | Yes | — |
+
+### GatewayUpdateToolPolicyPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `rules` | `ToolAccessRulePayload[]` | No | — |
+| `dangerousCapabilities` | `DangerousCapabilityRulePayload[]` | No | — |
+
+### GatewayUpdateToolPolicyResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `policy` | `ToolAccessPolicyPayload` | Yes | — |
+
+### GatewayGetWorkspaceDefaultsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+
+### GatewayGetWorkspaceDefaultsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `defaults` | `WorkspaceDefaultsPayload` | Yes | — |
+
+### GatewaySetWorkspaceDefaultsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceHomeRoot` | `string` | No | — |
+
+### GatewaySetWorkspaceDefaultsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `defaults` | `WorkspaceDefaultsPayload` | Yes | — |
+
+### GatewayGetExternalConnectivityPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+
+### GatewayGetExternalConnectivityResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `settings` | `ExternalConnectivitySettingsPayload` | Yes | — |
+| `status` | `ExternalConnectivityStatusPayload` | Yes | — |
+
+### GatewaySetExternalConnectivityPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `mode` | `string` | Yes | — |
+
+### GatewaySetExternalConnectivityResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `settings` | `ExternalConnectivitySettingsPayload` | Yes | — |
+| `status` | `ExternalConnectivityStatusPayload` | Yes | — |

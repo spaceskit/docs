@@ -90,10 +90,10 @@ Derived from:
 | Gateway Admin | `GATEWAY_REMOVE_PROVIDER_CONFIG` | `gateway.remove_provider_config` | Client -> Gateway | router | 2 | 3 | Implemented + tested |
 | Gateway Admin | `GATEWAY_REVOKE_CAPABILITY` | `gateway.revoke_capability` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
 | Gateway Admin | `GATEWAY_SET_PROVIDER_CONFIG` | `gateway.set_provider_config` | Client -> Gateway | router | 2 | 5 | Implemented + tested |
-| Gateway Admin | `GATEWAY_SKILL_DELETE` | `gateway.skill_delete` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
-| Gateway Admin | `GATEWAY_SKILL_GET` | `gateway.skill_get` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
-| Gateway Admin | `GATEWAY_SKILL_LIST` | `gateway.skill_list` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
-| Gateway Admin | `GATEWAY_SKILL_UPSERT` | `gateway.skill_upsert` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
+| Gateway Admin | `LIBRARY_DELETE_ENTRY` | `library.delete_entry` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
+| Gateway Admin | `LIBRARY_GET_ENTRY` | `library.get_entry` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
+| Gateway Admin | `LIBRARY_LIST_ENTRIES` | `library.list_entries` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
+| Gateway Admin | `LIBRARY_SAVE_SKILL` | `library.save_skill` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
 | Gateway Admin | `GATEWAY_TEST_CONNECTOR` | `gateway.test_connector` | Client -> Gateway | router | 2 | 2 | Implemented + tested |
 | Gateway Admin | `GATEWAY_UPDATE_CONNECTOR_POLICY` | `gateway.update_connector_policy` | Client -> Gateway | router | 2 | 0 | Implemented |
 | Gateway Admin | `GATEWAY_UPDATE_POLICY` | `gateway.update_policy` | Client -> Gateway | router | 2 | 2 | Implemented + tested |

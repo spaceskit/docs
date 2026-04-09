@@ -31,23 +31,17 @@ description: Protocol messages in the capabilities family.
 
 ### CapabilitiesRegisterPayload
 
-> Adapter -> Gateway: Register one or more native capability providers. The gateway exposes these providers through CapabilityRegistry.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `providers` | `AdapterCapabilityProvider[]` | Yes | — |
 
 ### CapabilitiesDeregisterPayload
 
-> Adapter -> Gateway: Deregister one or more providers.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `providerIds` | `string[]` | Yes | — |
 
 ### CapabilityResultPayload
-
-> Adapter -> Gateway: Return invocation result.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -57,8 +51,6 @@ description: Protocol messages in the capabilities family.
 | `durationMs` | `number` | No | — |
 
 ### CapabilityErrorPayload
-
-> Adapter -> Gateway: Return invocation error.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|

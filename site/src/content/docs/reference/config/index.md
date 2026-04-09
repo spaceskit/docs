@@ -1,11 +1,11 @@
 ---
 title: Configuration Reference
-description: All 74 environment variables for configuring the Spaceskit gateway.
+description: All 68 environment variables for configuring the Spaceskit gateway.
 ---
 
 <!-- AUTO-GENERATED — re-run: bun run docs:generate -->
 
-> 74 environment variables across 17 sections. Generated from `.env.example` and `bootstrap/src/index.ts`.
+> 68 environment variables across 16 sections. Generated from `.env.example` and `bootstrap/src/index.ts`.
 
 ## Server
 
@@ -155,65 +155,8 @@ description: All 74 environment variables for configuring the Spaceskit gateway.
 |----------|---------|----------|-------------|
 | `SPACESKIT_WORKSPACE_LOG_DEBUG` | `false` | No | Include full payload bodies in workspace logs |
 
-## Legacy aliases (deprecated — use MAIN_ variants instead)
-
-| Variable | Default | Required | Description |
-|----------|---------|----------|-------------|
-| `SPACESKIT_MASTER_SPACE_ID` | — | No | ~~use SPACESKIT_MAIN_SPACE_ID~~ (deprecated) |
-| `SPACESKIT_MASTER_SPACE_NAME` | — | No | ~~use SPACESKIT_MAIN_SPACE_NAME~~ (deprecated) |
-| `SPACESKIT_MASTER_RESOURCE_ID` | — | No | ~~use SPACESKIT_MAIN_RESOURCE_ID~~ (deprecated) |
-| `SPACESKIT_MASTER_SPACE_GOAL` | — | No | ~~use SPACESKIT_MAIN_SPACE_GOAL~~ (deprecated) |
-| `SPACESKIT_MASTER_PROFILE_ID` | — | No | ~~use SPACESKIT_MAIN_PROFILE_ID~~ (deprecated) |
-| `SPACESKIT_MASTER_AGENT_ID` | — | No | ~~use SPACESKIT_MAIN_AGENT_ID~~ (deprecated) |
-
 ## Undocumented Variables
 
 These variables are referenced in bootstrap code but not documented in `.env.example`:
 
-- `SPACESKIT_MAIN_SPACE_NAME` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SHARE_IDENTITY_MODE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SHARE_ALLOW_DEVICE_KEY_FALLBACK` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SHARE_RELAY_URL` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SHARE_FALLBACK_GATEWAY_URL` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_ALLOW_PERSISTENCE_FALLBACK` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_ARCH_FREEZE_ENFORCED` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_COLLAB_CHANGESETS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_REQUIRE_STAGED_WRITES` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_RELAY_SHARE_V2` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_RELAY_SLO_MIN_SUCCESS_RATE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_RELAY_SLO_MIN_SAMPLES` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_RELAY_SLO_ENFORCE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SANDBOX_RUNTIME` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SANDBOX_RUNTIME_MODULE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SANDBOX_ALLOW_HOST_PASSTHROUGH` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SANDBOX_SLO_MIN_SUCCESS_RATE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SANDBOX_SLO_MIN_SAMPLES` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SANDBOX_SLO_ENFORCE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_TOOL_POLICY_V2` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_MAIN_ADMIN_MCP` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_MAIN_AGENT_SWAP_V1` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_MAIN_AGENT_AUTO_REPAIR` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_AGENT_SESSION_REPLACEMENT_V1` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_LOCAL_USAGE_WINDOW_DAYS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_LOCAL_USAGE_MAX_SESSIONS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_LOCAL_USAGE_REFRESH_MIN_SECS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_CODEXBAR_MODE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_HTTP_PRINCIPAL_AUTH_STRICT` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_HTTP_PRINCIPAL_AUTH_HS256_SECRET` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_HTTP_PRINCIPAL_AUTH_MAX_CLOCK_SKEW_SECONDS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_ENABLE_APPLE_FOUNDATION_PROVIDER` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_DRAIN_TIMEOUT_MS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_MAX_AGENT_HOPS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_MAX_MESSAGE_SIZE` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SKIP_AUTH` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_ALLOWED_ORIGINS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_SYNC_REQUIRE_SECRET` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_HTTP_RATE_LIMIT` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_MAX_CONNECTIONS_PER_IP` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_A2A_REQUIRE_AUTH` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_A2A_TASK_MAX` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_A2A_TASK_TTL_MS` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_NOISE_PUBLIC_KEY` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_NOISE_PRIVATE_KEY` — Referenced in bootstrap code but missing from .env.example
-- `SPACESKIT_ENFORCE_TRANSPORT_POLICY` — Referenced in bootstrap code but missing from .env.example
 - `SPACESKIT_COLLAB_MAINTENANCE_TICK_MS` — Referenced in bootstrap code but missing from .env.example

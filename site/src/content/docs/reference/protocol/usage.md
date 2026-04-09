@@ -17,8 +17,6 @@ description: Protocol messages in the usage family.
 
 ### UsageGetSnapshotPayload
 
-> Usage: polling-friendly snapshot for windows + budget state.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |

@@ -5,7 +5,7 @@ description: Protocol messages in the spaces family.
 
 <!-- AUTO-GENERATED — re-run: bun run docs:generate -->
 
-> 53 message types in the **spaces** family.
+> 58 message types in the **spaces** family.
 
 ## Overview
 
@@ -14,6 +14,8 @@ description: Protocol messages in the spaces family.
 | `SPACE_CREATE` | `space.create` | Client → Gateway | [`SpaceCreatePayload`](#spacecreatepayload) | — |
 | `SPACE_GET` | `space.get` | Client → Gateway | [`SpaceGetPayload`](#spacegetpayload) | — |
 | `SPACE_LIST` | `space.list` | Client → Gateway | [`SpaceListPayload`](#spacelistpayload) | — |
+| `SPACE_ARCHIVE` | `space.archive` | Client → Gateway | [`SpaceArchivePayload`](#spacearchivepayload) | [`SpaceArchiveResponsePayload`](#spacearchiveresponsepayload) |
+| `SPACE_DELETE` | `space.delete` | Client → Gateway | [`SpaceDeletePayload`](#spacedeletepayload) | [`SpaceDeleteResponsePayload`](#spacedeleteresponsepayload) |
 | `SPACE_ADD_AGENT` | `space.add_agent` | Client → Gateway | [`SpaceAddAgentPayload`](#spaceaddagentpayload) | — |
 | `SPACE_REMOVE_AGENT` | `space.remove_agent` | Client → Gateway | [`SpaceRemoveAgentPayload`](#spaceremoveagentpayload) | — |
 | `SPACE_UPDATE_AGENT_ASSIGNMENT` | `space.update_agent_assignment` | Client → Gateway | [`SpaceUpdateAgentAssignmentPayload`](#spaceupdateagentassignmentpayload) | — |
@@ -62,14 +64,15 @@ description: Protocol messages in the spaces family.
 | `SPACE_RESET` | `space.reset` | Client → Gateway | [`SpaceResetPayload`](#spaceresetpayload) | [`SpaceResetResponsePayload`](#spaceresetresponsepayload) |
 | `SPACE_RESET_AGENT_USAGE_SESSION` | `space.reset_agent_usage_session` | Client → Gateway | [`SpaceResetAgentUsageSessionPayload`](#spaceresetagentusagesessionpayload) | [`SpaceResetAgentUsageSessionResponsePayload`](#spaceresetagentusagesessionresponsepayload) |
 | `SPACE_GET_EFFECTIVE_TOOLS` | `space.get_effective_tools` | Client → Gateway | [`SpaceGetEffectiveToolsPayload`](#spacegeteffectivetoolspayload) | [`SpaceGetEffectiveToolsResponsePayload`](#spacegeteffectivetoolsresponsepayload) |
+| `SPACE_GET_EFFECTIVE_TOOL_ACCESS` | `space.get_effective_tool_access` | Client → Gateway | [`SpaceGetEffectiveToolAccessPayload`](#spacegeteffectivetoolaccesspayload) | [`SpaceGetEffectiveToolAccessResponsePayload`](#spacegeteffectivetoolaccessresponsepayload) |
+| `SPACE_GET_TOOL_POLICY` | `space.get_tool_policy` | Client → Gateway | [`SpaceGetToolPolicyPayload`](#spacegettoolpolicypayload) | [`SpaceGetToolPolicyResponsePayload`](#spacegettoolpolicyresponsepayload) |
+| `SPACE_UPDATE_TOOL_POLICY` | `space.update_tool_policy` | Client → Gateway | [`SpaceUpdateToolPolicyPayload`](#spaceupdatetoolpolicypayload) | [`SpaceUpdateToolPolicyResponsePayload`](#spaceupdatetoolpolicyresponsepayload) |
 | `SPACE_STATE` | `space_state` | Gateway → Client | [`SpaceStatePayload`](#spacestatepayload) | — |
 | `SPACE_AGENT_UPDATED` | `space.agent_updated` | Gateway → Client | — | — |
 
 ## Payloads
 
 ### SpaceCreatePayload
-
-> Space admin: create a new space.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -94,16 +97,12 @@ description: Protocol messages in the spaces family.
 
 ### SpaceGetPayload
 
-> Space admin: fetch a single space by ID.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
 | `spaceId` | `string` | Yes | — |
 
 ### SpaceListPayload
-
-> Space admin: list spaces.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -112,9 +111,39 @@ description: Protocol messages in the spaces family.
 | `resourceId` | `string` | No | — |
 | `limit` | `number` | No | — |
 
-### SpaceAddAgentPayload
+### SpaceArchivePayload
 
-> Space admin: add an agent assignment.
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `idempotencyKey` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+
+### SpaceArchiveResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `space` | `SpaceSummary` | Yes | — |
+| `archived` | `boolean` | Yes | — |
+
+### SpaceDeletePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `idempotencyKey` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+
+### SpaceDeleteResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceId` | `string` | Yes | — |
+| `spaceUid` | `string` | Yes | — |
+| `deleted` | `boolean` | Yes | — |
+| `space` | `SpaceSummary \| null` | No | — |
+
+### SpaceAddAgentPayload
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -132,8 +161,6 @@ description: Protocol messages in the spaces family.
 
 ### SpaceRemoveAgentPayload
 
-> Space admin: remove an assignment.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -142,8 +169,6 @@ description: Protocol messages in the spaces family.
 | `agentId` | `string` | Yes | — |
 
 ### SpaceUpdateAgentAssignmentPayload
-
-> Space admin: update assignment fields.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -158,11 +183,9 @@ description: Protocol messages in the spaces family.
 | `role` | `"participant" \| "global_coordinator" \| "space_moderator"` | No | — |
 | `turnOrder` | `number` | No | — |
 | `isPrimary` | `boolean` | No | — |
-| `resetSession` | `boolean` | No | Force runtime usage-session replacement for this assignment even when profileId is unchanged. Intended for runtime/model swaps that keep the same profile binding. |
+| `resetSession` | `boolean` | No | — |
 
 ### SpaceSetOrchestratorPayload
-
-> Space admin: set orchestrator profile for a space.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -172,8 +195,6 @@ description: Protocol messages in the spaces family.
 | `profileId` | `string` | Yes | — |
 
 ### SpaceListAgentAssignmentsPayload
-
-> Space admin: list assignments for one space.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -263,8 +284,6 @@ description: Protocol messages in the spaces family.
 
 ### SpaceAddSkillPayload
 
-> Space admin: assign a skill to a space.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
@@ -283,8 +302,6 @@ description: Protocol messages in the spaces family.
 | `space` | `unknown` | No | — |
 
 ### SpaceRemoveSkillPayload
-
-> Space admin: remove a skill from a space.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -305,8 +322,6 @@ description: Protocol messages in the spaces family.
 | `space` | `unknown` | No | — |
 
 ### SpaceListSkillsPayload
-
-> Space admin: list skills assigned to one space.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -408,7 +423,7 @@ description: Protocol messages in the spaces family.
 | `spaceUid` | `string` | No | — |
 | `limit` | `number` | No | — |
 | `offset` | `number` | No | — |
-| `lastSeenTurnId` | `string` | No | When provided, return only turns created after this turn ID (cursor-based delta read). |
+| `lastSeenTurnId` | `string` | No | — |
 
 ### SpaceListTurnsResponsePayload
 
@@ -509,8 +524,6 @@ description: Protocol messages in the spaces family.
 | `created` | `boolean` | Yes | — |
 
 ### SpaceLinkPayload
-
-> Cross-space context sharing.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -794,12 +807,54 @@ description: Protocol messages in the spaces family.
 | `apiVersion` | `string` | No | — |
 | `spaceId` | `string` | Yes | — |
 | `agentId` | `string` | No | — |
+| `accessMode` | `"default" \| "full_access"` | No | — |
 
 ### SpaceGetEffectiveToolsResponsePayload
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `matrix` | `EffectiveToolMatrixPayload` | Yes | — |
+
+### SpaceGetEffectiveToolAccessPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `agentId` | `string` | No | — |
+| `accessMode` | `"default" \| "full_access"` | No | — |
+
+### SpaceGetEffectiveToolAccessResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `access` | `EffectiveToolAccessPayload` | Yes | — |
+
+### SpaceGetToolPolicyPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceId` | `string` | Yes | — |
+
+### SpaceGetToolPolicyResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `policy` | `ToolAccessPolicyPayload` | Yes | — |
+
+### SpaceUpdateToolPolicyPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceId` | `string` | Yes | — |
+| `rules` | `ToolAccessRulePayload[]` | No | — |
+| `dangerousCapabilities` | `DangerousCapabilityRulePayload[]` | No | — |
+
+### SpaceUpdateToolPolicyResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `policy` | `ToolAccessPolicyPayload` | Yes | — |
 
 ### SpaceStatePayload
 

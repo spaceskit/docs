@@ -19,18 +19,16 @@ description: Protocol messages in the orchestrator family.
 
 ### OrchestratorCommandPayload
 
-> Orchestrator high-level command channel.
-
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
 | `correlationId` | `string` | No | — |
 | `idempotencyKey` | `string` | No | — |
-| `commandType` | `\| "list_rooms"
-    \| "create_room"
+| `commandType` | `\| "list_spaces"
+    \| "create_space"
     \| "list_skills"
     \| "create_skill"
-    \| "handoff_room"
+    \| "handoff_space"
     \| "add_agent"
     \| "share_context"
     \| "run_space_prompt"` | Yes | — |
