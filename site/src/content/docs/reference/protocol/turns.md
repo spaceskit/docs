@@ -25,7 +25,11 @@ description: Protocol messages in the turns family.
 | `spaceUid` | `string` | Yes | — |
 | `input` | `string` | Yes | — |
 | `targetAgentId` | `string` | No | — |
+| `targetAgentIds` | `string[]` | No | — |
 | `replyToTurnId` | `string` | No | — |
+| `conversationTopology` | `"direct" \| "shared_team_chat" \| "broadcast_team"` | No | — |
+| `mode` | `"ask" \| "plan" \| "execute"` | No | — |
+| `effort` | `"low" \| "medium" \| "high" \| "max"` | No | — |
 | `accessMode` | `"default" \| "full_access"` | No | — |
 
 ### ResumeFeedbackPayload
@@ -69,7 +73,12 @@ description: Protocol messages in the turns family.
 | `spaceId` | `string` | Yes | — |
 | `spaceUid` | `string` | Yes | — |
 | `turnId` | `string` | Yes | — |
+| `rootTurnId` | `string` | No | — |
 | `agentId` | `string` | Yes | — |
+| `conversationTopology` | `string` | No | — |
+| `transcriptVisibility` | `"visible" \| "activity_only" \| "summary"` | No | — |
+| `summaryTurnId` | `string` | No | — |
+| `streamKind` | `"assistant_output" \| "provider_client"` | No | — |
 | `delta` | `string` | Yes | — |
 | `seq` | `number` | Yes | — |
 | `done` | `boolean` | Yes | — |

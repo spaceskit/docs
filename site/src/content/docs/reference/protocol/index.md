@@ -1,11 +1,11 @@
 ---
 title: Protocol Messages
-description: All 188 message types in the Spaceskit WebSocket protocol.
+description: All 252 message types in the Spaceskit WebSocket protocol.
 ---
 
 <!-- AUTO-GENERATED — re-run: bun run docs:generate -->
 
-> 188 message types across 17 families. Generated from `protocol.ts`.
+> 252 message types across 15 families. Generated from `protocol.ts`.
 
 ## Message Types
 
@@ -26,6 +26,10 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | `SPACE_REMOVE_AGENT` | `space.remove_agent` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_UPDATE_AGENT_ASSIGNMENT` | `space.update_agent_assignment` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_SET_ORCHESTRATOR` | `space.set_orchestrator` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_SET_THINKING_CAPTURE_POLICY` | `space.set_thinking_capture_policy` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_GET_MEMORY_POLICY` | `space.get_memory_policy` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_SET_MEMORY_POLICY` | `space.set_memory_policy` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_END_INCOGNITO_SESSION` | `space.end_incognito_session` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_LIST_AGENT_ASSIGNMENTS` | `space.list_agent_assignments` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_GET_MCP_ENDPOINT` | `space.get_mcp_endpoint` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_SET_MCP_ENDPOINT` | `space.set_mcp_endpoint` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
@@ -42,11 +46,6 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | `SPACE_LIST_RESOURCES` | `space.list_resources` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_LIST_TURNS` | `space.list_turns` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_LIST_ORCHESTRATION_JOURNAL` | `space.list_orchestration_journal` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
-| `PROFILE_CREATE` | `profile.create` | Client → Gateway | [profiles](/reference/protocol/profiles/) |
-| `PROFILE_GET` | `profile.get` | Client → Gateway | [profiles](/reference/protocol/profiles/) |
-| `PROFILE_LIST` | `profile.list` | Client → Gateway | [profiles](/reference/protocol/profiles/) |
-| `PROFILE_UPDATE` | `profile.update` | Client → Gateway | [profiles](/reference/protocol/profiles/) |
-| `PROFILE_ARCHIVE` | `profile.archive` | Client → Gateway | [profiles](/reference/protocol/profiles/) |
 | `IDENTITY_LIST_AGENT_DEFINITIONS` | `identity.list_agent_definitions` | Client → Gateway | [other](/reference/protocol/other/) |
 | `IDENTITY_GET_AGENT_DEFINITION` | `identity.get_agent_definition` | Client → Gateway | [other](/reference/protocol/other/) |
 | `IDENTITY_CREATE_AGENT_DEFINITION` | `identity.create_agent_definition` | Client → Gateway | [other](/reference/protocol/other/) |
@@ -60,29 +59,48 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | `IDENTITY_PREVIEW_COMPILED_INSTRUCTIONS` | `identity.preview_compiled_instructions` | Client → Gateway | [other](/reference/protocol/other/) |
 | `IDENTITY_PREVIEW_RUNTIME_SYSTEM_PROMPT` | `identity.preview_runtime_system_prompt` | Client → Gateway | [other](/reference/protocol/other/) |
 | `IDENTITY_PREVIEW_SYSTEM_PROMPT_MATRIX` | `identity.preview_system_prompt_matrix` | Client → Gateway | [other](/reference/protocol/other/) |
-| `PRESET_LIST` | `preset.list` | Client → Gateway | [presets](/reference/protocol/presets/) |
-| `PRESET_GET` | `preset.get` | Client → Gateway | [presets](/reference/protocol/presets/) |
-| `PRESET_APPLY_TO_SPACE` | `preset.apply_to_space` | Client → Gateway | [presets](/reference/protocol/presets/) |
-| `PRESET_SAVE_AGENT` | `preset.save_agent` | Client → Gateway | [presets](/reference/protocol/presets/) |
-| `PRESET_ARCHIVE_AGENT` | `preset.archive_agent` | Client → Gateway | [presets](/reference/protocol/presets/) |
+| `SPACE_LIST_TEMPLATES` | `space.list_templates` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_GET_TEMPLATE` | `space.get_template` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_PREVIEW_TEMPLATE` | `space.preview_template` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_CREATE_FROM_TEMPLATE` | `space.create_from_template` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_SAVE_TEMPLATE` | `space.save_template` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_ARCHIVE_TEMPLATE` | `space.archive_template` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `GATEWAY_SKILL_LIST` | `gateway.skill_list` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_SKILL_GET` | `gateway.skill_get` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_SKILL_UPSERT` | `gateway.skill_upsert` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_SKILL_DELETE` | `gateway.skill_delete` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `LIBRARY_LIST_ENTRIES` | `library.list_entries` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_GET_ENTRY` | `library.get_entry` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_SAVE_SKILL` | `library.save_skill` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_IMPORT_ENTRY` | `library.import_entry` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_ARCHIVE_ENTRY` | `library.archive_entry` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_SET_ENTRY_ENABLED` | `library.set_entry_enabled` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_DELETE_ENTRY` | `library.delete_entry` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_SCAN_ENTRIES` | `library.scan_entries` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_LIST_SKILL_DRAFTS` | `library.list_skill_drafts` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_GET_SKILL_DRAFT` | `library.get_skill_draft` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_CREATE_SKILL_DRAFT` | `library.create_skill_draft` | Client → Gateway | [other](/reference/protocol/other/) |
+| `LIBRARY_DELETE_SKILL_DRAFT` | `library.delete_skill_draft` | Client → Gateway | [other](/reference/protocol/other/) |
 | `GATEWAY_DISCOVER_LOCAL_AGENTS` | `gateway.discover_local_agents` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_LIST_PROVIDER_CONFIGS` | `gateway.list_provider_configs` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `GATEWAY_GET_RUNTIME_DEFAULTS` | `gateway.get_runtime_defaults` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `GATEWAY_SET_RUNTIME_DEFAULTS` | `gateway.set_runtime_defaults` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_GET_MAIN_AGENT` | `gateway.get_main_agent` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_SET_MAIN_AGENT` | `gateway.set_main_agent` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `GATEWAY_GET_CONCIERGE_AGENT` | `gateway.get_concierge_agent` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `GATEWAY_SET_CONCIERGE_AGENT` | `gateway.set_concierge_agent` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_LIST_AVAILABLE_MODELS` | `gateway.list_available_models` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
 | `GATEWAY_LIST_PROVIDER_CATALOGS` | `gateway.list_provider_catalogs` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `GATEWAY_LIST_INTERCONNECTORS` | `gateway.list_interconnectors` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `GATEWAY_RESCAN_INTERCONNECTORS` | `gateway.rescan_interconnectors` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
+| `CONNECTOR_SUBMIT_INBOUND_EVENT` | `connector.submit_inbound_event` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONNECTOR_INBOUND_EVENT_RESULT` | `connector.inbound_event_result` | Client → Gateway | [other](/reference/protocol/other/) |
 | `TOOL_LIST` | `tool.list` | Client → Gateway | [other](/reference/protocol/other/) |
 | `TOOL_GET` | `tool.get` | Client → Gateway | [other](/reference/protocol/other/) |
 | `TOOL_SCAFFOLD` | `tool.scaffold` | Client → Gateway | [other](/reference/protocol/other/) |
 | `TOOL_REGISTER` | `tool.register` | Client → Gateway | [other](/reference/protocol/other/) |
 | `TOOL_REMOVE` | `tool.remove` | Client → Gateway | [other](/reference/protocol/other/) |
+| `TOOL_SET_ENABLED` | `tool.set_enabled` | Client → Gateway | [other](/reference/protocol/other/) |
 | `TOOL_LIST_GRANTS` | `tool.list_grants` | Client → Gateway | [other](/reference/protocol/other/) |
 | `TOOL_REVOKE_GRANT` | `tool.revoke_grant` | Client → Gateway | [other](/reference/protocol/other/) |
 | `GATEWAY_CREATE_INTEGRATION_REQUEST` | `gateway.create_integration_request` | Client → Gateway | [gateway](/reference/protocol/gateway/) |
@@ -120,12 +138,29 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | `SCHEDULER_CREATE_JOB` | `scheduler.create_job` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_GET_JOB` | `scheduler.get_job` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_LIST_JOBS` | `scheduler.list_jobs` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
+| `SCHEDULER_LIST_EVAL_DEFINITIONS` | `scheduler.list_eval_definitions` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_UPDATE_JOB` | `scheduler.update_job` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_DELETE_JOB` | `scheduler.delete_job` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_LINK_SPACE` | `scheduler.link_space` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_UNLINK_SPACE` | `scheduler.unlink_space` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_LIST_RUNS` | `scheduler.list_runs` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
 | `SCHEDULER_RUN_NOW` | `scheduler.run_now` | Client → Gateway | [scheduler](/reference/protocol/scheduler/) |
+| `WORKBENCH_LIST_QUEUE` | `workbench.list_queue` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_GET_QUEUE_ITEM` | `workbench.get_queue_item` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_CREATE_BATCH` | `workbench.create_batch` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_LIST_BATCHES` | `workbench.list_batches` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_UPDATE_BATCH` | `workbench.update_batch` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_START_RUN` | `workbench.start_run` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_RETRY_RUN` | `workbench.retry_run` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_CANCEL_RUN` | `workbench.cancel_run` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_LIST_RUNS` | `workbench.list_runs` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_GET_RUN` | `workbench.get_run` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_APPROVE_STAGE` | `workbench.approve_stage` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_REJECT_STAGE` | `workbench.reject_stage` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_SET_MODE` | `workbench.set_mode` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_LIST_ARTIFACTS` | `workbench.list_artifacts` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_GET_POLICY` | `workbench.get_policy` | Client → Gateway | [other](/reference/protocol/other/) |
+| `WORKBENCH_UPDATE_POLICY` | `workbench.update_policy` | Client → Gateway | [other](/reference/protocol/other/) |
 | `ORCHESTRATOR_COMMAND` | `orchestrator.command` | Client → Gateway | [orchestrator](/reference/protocol/orchestrator/) |
 | `ORCHESTRATOR_GET_COMMAND` | `orchestrator.get_command` | Client → Gateway | [orchestrator](/reference/protocol/orchestrator/) |
 | `SPACE_LINK` | `space.link` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
@@ -147,9 +182,25 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | `SPACE_GET_QUOTA` | `space.get_quota` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_UPDATE_QUOTA_POLICY` | `space.update_quota_policy` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_GET_USAGE` | `space.get_usage` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_LIST_ACTIVITY_LOG` | `space.list_activity_log` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_GET_TURN_TRACE` | `space.get_turn_trace` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_LIST_EXPERIENCES` | `space.list_experiences` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_GET_EXPERIENCE` | `space.get_experience` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_LIST_INSIGHTS` | `space.list_insights` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_GET_INSIGHT` | `space.get_insight` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_ACCEPT_INSIGHT` | `space.accept_insight` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_REJECT_INSIGHT` | `space.reject_insight` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_DISMISS_INSIGHT` | `space.dismiss_insight` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_GET_SPACE_AGENT_NOTES` | `space.get_space_agent_notes` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_UPDATE_SPACE_AGENT_NOTES` | `space.update_space_agent_notes` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_GET_USER_PROFILE` | `space.get_user_profile` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_UPDATE_USER_PROFILE` | `space.update_user_profile` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_LIST_MEMORIES` | `space.list_memories` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_DELETE_MEMORY` | `space.delete_memory` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_UPDATE_MEMORY_IMPORTANCE` | `space.update_memory_importance` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_LIST_ARTIFACTS` | `space.list_artifacts` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_GET_ARTIFACT` | `space.get_artifact` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
+| `SPACE_GET_DEBUG_ARTIFACT` | `space.get_debug_artifact` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_RESET` | `space.reset` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_RESET_AGENT_USAGE_SESSION` | `space.reset_agent_usage_session` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
 | `SPACE_GET_EFFECTIVE_TOOLS` | `space.get_effective_tools` | Client → Gateway | [spaces](/reference/protocol/spaces/) |
@@ -173,6 +224,16 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | `SPEECH_START` | `speech.start` | Client → Gateway | [speech](/reference/protocol/speech/) |
 | `SPEECH_AUDIO_CHUNK` | `speech.audio_chunk` | Client → Gateway | [speech](/reference/protocol/speech/) |
 | `SPEECH_CONTROL` | `speech.control` | Client → Gateway | [speech](/reference/protocol/speech/) |
+| `CONCIERGE_CALL_START` | `concierge.call.start` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_ANSWER` | `concierge.call.answer` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_END` | `concierge.call.end` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_SET_MUTED` | `concierge.call.set_muted` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_AUDIO_CHUNK` | `concierge.call.audio_chunk` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_CONTROL` | `concierge.call.control` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_HANDOFF_PREPARE` | `concierge.call.handoff.prepare` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_HANDOFF_ACCEPT` | `concierge.call.handoff.accept` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_CALL_REGISTER_PUSH` | `concierge.call.register_push` | Client → Gateway | [other](/reference/protocol/other/) |
+| `CONCIERGE_ACTION_RESULT` | `concierge.action_result` | Client → Gateway | [other](/reference/protocol/other/) |
 | `CAPABILITIES_REGISTER` | `capabilities.register` | Client → Gateway | [capabilities](/reference/protocol/capabilities/) |
 | `CAPABILITIES_DEREGISTER` | `capabilities.deregister` | Client → Gateway | [capabilities](/reference/protocol/capabilities/) |
 | `CAPABILITY_RESULT` | `capability.result` | Client → Gateway | [capabilities](/reference/protocol/capabilities/) |
@@ -188,6 +249,9 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | `NOTIFICATION` | `notification` | Gateway → Client | [core](/reference/protocol/core/) |
 | `ORCHESTRATOR_EVENT` | `orchestrator.event` | Gateway → Client | [orchestrator](/reference/protocol/orchestrator/) |
 | `SPEECH_EVENT` | `speech.event` | Gateway → Client | [speech](/reference/protocol/speech/) |
+| `CONCIERGE_CALL_EVENT` | `concierge.call.event` | Gateway → Client | [other](/reference/protocol/other/) |
+| `APP_NAVIGATE` | `app.navigate` | Gateway → Client | [other](/reference/protocol/other/) |
+| `APP_CONCIERGE_ACTION_REQUEST` | `app.concierge_action_request` | Gateway → Client | [other](/reference/protocol/other/) |
 | `ERROR` | `error` | Gateway → Client | [core](/reference/protocol/core/) |
 | `PONG` | `pong` | Gateway → Client | [core](/reference/protocol/core/) |
 | `SUBSCRIBE_NOTIFICATIONS` | `subscribe_notifications` | Client → Gateway | [subscriptions](/reference/protocol/subscriptions/) |
@@ -208,13 +272,11 @@ description: All 188 message types in the Spaceskit WebSocket protocol.
 | auth | 9 | [View](/reference/protocol/auth/) |
 | capabilities | 6 | [View](/reference/protocol/capabilities/) |
 | core | 4 | [View](/reference/protocol/core/) |
-| gateway | 47 | [View](/reference/protocol/gateway/) |
+| gateway | 53 | [View](/reference/protocol/gateway/) |
 | orchestrator | 3 | [View](/reference/protocol/orchestrator/) |
-| other | 23 | [View](/reference/protocol/other/) |
-| presets | 5 | [View](/reference/protocol/presets/) |
-| profiles | 5 | [View](/reference/protocol/profiles/) |
-| scheduler | 9 | [View](/reference/protocol/scheduler/) |
-| spaces | 58 | [View](/reference/protocol/spaces/) |
+| other | 67 | [View](/reference/protocol/other/) |
+| scheduler | 10 | [View](/reference/protocol/scheduler/) |
+| spaces | 81 | [View](/reference/protocol/spaces/) |
 | speech | 4 | [View](/reference/protocol/speech/) |
 | subscriptions | 2 | [View](/reference/protocol/subscriptions/) |
 | sync | 3 | [View](/reference/protocol/sync/) |

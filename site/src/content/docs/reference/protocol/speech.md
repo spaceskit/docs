@@ -24,7 +24,7 @@ description: Protocol messages in the speech family.
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
 | `spaceId` | `string` | Yes | — |
-| `spaceUid` | `string` | Yes | — |
+| `spaceUid` | `string` | No | — |
 | `sessionId` | `string` | No | — |
 | `locale` | `string` | No | — |
 | `sourceDevice` | `string` | No | — |
@@ -40,6 +40,8 @@ description: Protocol messages in the speech family.
 | `allowByokFallback` | `boolean` | No | — |
 | `allowLocalFallback` | `boolean` | No | — |
 | `allowAppleSpeechFallback` | `boolean` | No | — |
+| `sttPreferences` | `SpeechRoutePreferencesPayload` | No | — |
+| `ttsPreferences` | `SpeechRoutePreferencesPayload` | No | — |
 
 ### SpeechAudioChunkPayload
 
@@ -58,6 +60,7 @@ description: Protocol messages in the speech family.
 | `ttsSeconds` | `number` | No | — |
 | `transcriptText` | `string` | No | — |
 | `isFinal` | `boolean` | No | — |
+| `engineMetrics` | `SpeechEngineMetricsPayload` | No | — |
 
 ### SpeechControlPayload
 
@@ -77,6 +80,7 @@ description: Protocol messages in the speech family.
 | `spaceUid` | `string` | Yes | — |
 | `type` | `string` | No | — |
 | `message` | `string` | No | — |
+| `intent` | `VoiceIntentDecisionPayload` | No | — |
 | `state` | `"idle" \| "running" \| "stopped" \| "interrupted" \| "ended"` | Yes | — |
 | `eventType` | `string` | Yes | — |
 | `providerSource` | `VoiceProviderSourcePayload` | No | — |
@@ -90,4 +94,10 @@ description: Protocol messages in the speech family.
 | `sequenceNo` | `number` | No | — |
 | `reason` | `string` | No | — |
 | `emittedAt` | `string` | No | — |
+| `sttRoute` | `VoiceRoutePayload` | No | — |
+| `ttsRoute` | `VoiceRoutePayload` | No | — |
+| `lockDecision` | `VoiceLockDecisionPayload` | No | — |
+| `fallbackEvent` | `VoiceFallbackEventPayload` | No | — |
+| `providerConfigs` | `VoiceProviderConfigPayload[]` | No | — |
+| `engineMetrics` | `SpeechEngineMetricsPayload` | No | — |
 | `ts` | `string` | Yes | — |

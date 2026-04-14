@@ -5,7 +5,7 @@ description: Protocol messages in the spaces family.
 
 <!-- AUTO-GENERATED — re-run: bun run docs:generate -->
 
-> 58 message types in the **spaces** family.
+> 81 message types in the **spaces** family.
 
 ## Overview
 
@@ -20,6 +20,10 @@ description: Protocol messages in the spaces family.
 | `SPACE_REMOVE_AGENT` | `space.remove_agent` | Client → Gateway | [`SpaceRemoveAgentPayload`](#spaceremoveagentpayload) | — |
 | `SPACE_UPDATE_AGENT_ASSIGNMENT` | `space.update_agent_assignment` | Client → Gateway | [`SpaceUpdateAgentAssignmentPayload`](#spaceupdateagentassignmentpayload) | — |
 | `SPACE_SET_ORCHESTRATOR` | `space.set_orchestrator` | Client → Gateway | [`SpaceSetOrchestratorPayload`](#spacesetorchestratorpayload) | — |
+| `SPACE_SET_THINKING_CAPTURE_POLICY` | `space.set_thinking_capture_policy` | Client → Gateway | [`SpaceSetThinkingCapturePolicyPayload`](#spacesetthinkingcapturepolicypayload) | [`SpaceSetThinkingCapturePolicyResponsePayload`](#spacesetthinkingcapturepolicyresponsepayload) |
+| `SPACE_GET_MEMORY_POLICY` | `space.get_memory_policy` | Client → Gateway | [`SpaceGetMemoryPolicyPayload`](#spacegetmemorypolicypayload) | [`SpaceGetMemoryPolicyResponsePayload`](#spacegetmemorypolicyresponsepayload) |
+| `SPACE_SET_MEMORY_POLICY` | `space.set_memory_policy` | Client → Gateway | [`SpaceSetMemoryPolicyPayload`](#spacesetmemorypolicypayload) | [`SpaceSetMemoryPolicyResponsePayload`](#spacesetmemorypolicyresponsepayload) |
+| `SPACE_END_INCOGNITO_SESSION` | `space.end_incognito_session` | Client → Gateway | [`SpaceEndIncognitoSessionPayload`](#spaceendincognitosessionpayload) | [`SpaceEndIncognitoSessionResponsePayload`](#spaceendincognitosessionresponsepayload) |
 | `SPACE_LIST_AGENT_ASSIGNMENTS` | `space.list_agent_assignments` | Client → Gateway | [`SpaceListAgentAssignmentsPayload`](#spacelistagentassignmentspayload) | — |
 | `SPACE_GET_MCP_ENDPOINT` | `space.get_mcp_endpoint` | Client → Gateway | [`SpaceGetMcpEndpointPayload`](#spacegetmcpendpointpayload) | [`SpaceGetMcpEndpointResponsePayload`](#spacegetmcpendpointresponsepayload) |
 | `SPACE_SET_MCP_ENDPOINT` | `space.set_mcp_endpoint` | Client → Gateway | [`SpaceSetMcpEndpointPayload`](#spacesetmcpendpointpayload) | [`SpaceSetMcpEndpointResponsePayload`](#spacesetmcpendpointresponsepayload) |
@@ -36,9 +40,12 @@ description: Protocol messages in the spaces family.
 | `SPACE_LIST_RESOURCES` | `space.list_resources` | Client → Gateway | [`SpaceListResourcesPayload`](#spacelistresourcespayload) | [`SpaceListResourcesResponsePayload`](#spacelistresourcesresponsepayload) |
 | `SPACE_LIST_TURNS` | `space.list_turns` | Client → Gateway | [`SpaceListTurnsPayload`](#spacelistturnspayload) | [`SpaceListTurnsResponsePayload`](#spacelistturnsresponsepayload) |
 | `SPACE_LIST_ORCHESTRATION_JOURNAL` | `space.list_orchestration_journal` | Client → Gateway | [`SpaceListOrchestrationJournalPayload`](#spacelistorchestrationjournalpayload) | [`SpaceListOrchestrationJournalResponsePayload`](#spacelistorchestrationjournalresponsepayload) |
+| `SPACE_LIST_TEMPLATES` | `space.list_templates` | Client → Gateway | — | — |
+| `SPACE_GET_TEMPLATE` | `space.get_template` | Client → Gateway | — | — |
 | `SPACE_PREVIEW_TEMPLATE` | `space.preview_template` | Client → Gateway | [`SpacePreviewTemplatePayload`](#spacepreviewtemplatepayload) | [`SpacePreviewTemplateResponsePayload`](#spacepreviewtemplateresponsepayload) |
 | `SPACE_CREATE_FROM_TEMPLATE` | `space.create_from_template` | Client → Gateway | [`SpaceCreateFromTemplatePayload`](#spacecreatefromtemplatepayload) | [`SpaceCreateFromTemplateResponsePayload`](#spacecreatefromtemplateresponsepayload) |
 | `SPACE_SAVE_TEMPLATE` | `space.save_template` | Client → Gateway | [`SpaceSaveTemplatePayload`](#spacesavetemplatepayload) | [`SpaceSaveTemplateResponsePayload`](#spacesavetemplateresponsepayload) |
+| `SPACE_ARCHIVE_TEMPLATE` | `space.archive_template` | Client → Gateway | — | — |
 | `SPACE_LINK` | `space.link` | Client → Gateway | [`SpaceLinkPayload`](#spacelinkpayload) | [`SpaceLinkResponsePayload`](#spacelinkresponsepayload) |
 | `SPACE_UNLINK` | `space.unlink` | Client → Gateway | [`SpaceUnlinkPayload`](#spaceunlinkpayload) | [`SpaceUnlinkResponsePayload`](#spaceunlinkresponsepayload) |
 | `SPACE_SHARE_CONTEXT` | `space.share_context` | Client → Gateway | [`SpaceShareContextPayload`](#spacesharecontextpayload) | [`SpaceShareContextResponsePayload`](#spacesharecontextresponsepayload) |
@@ -58,9 +65,25 @@ description: Protocol messages in the spaces family.
 | `SPACE_GET_QUOTA` | `space.get_quota` | Client → Gateway | [`SpaceGetQuotaPayload`](#spacegetquotapayload) | [`SpaceGetQuotaResponsePayload`](#spacegetquotaresponsepayload) |
 | `SPACE_UPDATE_QUOTA_POLICY` | `space.update_quota_policy` | Client → Gateway | [`SpaceUpdateQuotaPolicyPayload`](#spaceupdatequotapolicypayload) | [`SpaceUpdateQuotaPolicyResponsePayload`](#spaceupdatequotapolicyresponsepayload) |
 | `SPACE_GET_USAGE` | `space.get_usage` | Client → Gateway | [`SpaceGetUsagePayload`](#spacegetusagepayload) | [`SpaceGetUsageResponsePayload`](#spacegetusageresponsepayload) |
+| `SPACE_LIST_ACTIVITY_LOG` | `space.list_activity_log` | Client → Gateway | [`SpaceListActivityLogPayload`](#spacelistactivitylogpayload) | [`SpaceListActivityLogResponsePayload`](#spacelistactivitylogresponsepayload) |
 | `SPACE_GET_TURN_TRACE` | `space.get_turn_trace` | Client → Gateway | [`SpaceGetTurnTracePayload`](#spacegetturntracepayload) | [`SpaceGetTurnTraceResponsePayload`](#spacegetturntraceresponsepayload) |
+| `SPACE_LIST_EXPERIENCES` | `space.list_experiences` | Client → Gateway | [`SpaceListExperiencesPayload`](#spacelistexperiencespayload) | [`SpaceListExperiencesResponsePayload`](#spacelistexperiencesresponsepayload) |
+| `SPACE_GET_EXPERIENCE` | `space.get_experience` | Client → Gateway | [`SpaceGetExperiencePayload`](#spacegetexperiencepayload) | [`SpaceGetExperienceResponsePayload`](#spacegetexperienceresponsepayload) |
+| `SPACE_LIST_INSIGHTS` | `space.list_insights` | Client → Gateway | [`SpaceListInsightsPayload`](#spacelistinsightspayload) | [`SpaceListInsightsResponsePayload`](#spacelistinsightsresponsepayload) |
+| `SPACE_GET_INSIGHT` | `space.get_insight` | Client → Gateway | [`SpaceGetInsightPayload`](#spacegetinsightpayload) | [`SpaceGetInsightResponsePayload`](#spacegetinsightresponsepayload) |
+| `SPACE_ACCEPT_INSIGHT` | `space.accept_insight` | Client → Gateway | — | — |
+| `SPACE_REJECT_INSIGHT` | `space.reject_insight` | Client → Gateway | — | — |
+| `SPACE_DISMISS_INSIGHT` | `space.dismiss_insight` | Client → Gateway | — | — |
+| `SPACE_GET_SPACE_AGENT_NOTES` | `space.get_space_agent_notes` | Client → Gateway | [`SpaceGetSpaceAgentNotesPayload`](#spacegetspaceagentnotespayload) | [`SpaceGetSpaceAgentNotesResponsePayload`](#spacegetspaceagentnotesresponsepayload) |
+| `SPACE_UPDATE_SPACE_AGENT_NOTES` | `space.update_space_agent_notes` | Client → Gateway | [`SpaceUpdateSpaceAgentNotesPayload`](#spaceupdatespaceagentnotespayload) | [`SpaceUpdateSpaceAgentNotesResponsePayload`](#spaceupdatespaceagentnotesresponsepayload) |
+| `SPACE_GET_USER_PROFILE` | `space.get_user_profile` | Client → Gateway | [`SpaceGetUserProfilePayload`](#spacegetuserprofilepayload) | [`SpaceGetUserProfileResponsePayload`](#spacegetuserprofileresponsepayload) |
+| `SPACE_UPDATE_USER_PROFILE` | `space.update_user_profile` | Client → Gateway | [`SpaceUpdateUserProfilePayload`](#spaceupdateuserprofilepayload) | [`SpaceUpdateUserProfileResponsePayload`](#spaceupdateuserprofileresponsepayload) |
+| `SPACE_LIST_MEMORIES` | `space.list_memories` | Client → Gateway | [`SpaceListMemoriesPayload`](#spacelistmemoriespayload) | [`SpaceListMemoriesResponsePayload`](#spacelistmemoriesresponsepayload) |
+| `SPACE_DELETE_MEMORY` | `space.delete_memory` | Client → Gateway | [`SpaceDeleteMemoryPayload`](#spacedeletememorypayload) | [`SpaceDeleteMemoryResponsePayload`](#spacedeletememoryresponsepayload) |
+| `SPACE_UPDATE_MEMORY_IMPORTANCE` | `space.update_memory_importance` | Client → Gateway | [`SpaceUpdateMemoryImportancePayload`](#spaceupdatememoryimportancepayload) | [`SpaceUpdateMemoryImportanceResponsePayload`](#spaceupdatememoryimportanceresponsepayload) |
 | `SPACE_LIST_ARTIFACTS` | `space.list_artifacts` | Client → Gateway | [`SpaceListArtifactsPayload`](#spacelistartifactspayload) | [`SpaceListArtifactsResponsePayload`](#spacelistartifactsresponsepayload) |
 | `SPACE_GET_ARTIFACT` | `space.get_artifact` | Client → Gateway | [`SpaceGetArtifactPayload`](#spacegetartifactpayload) | [`SpaceGetArtifactResponsePayload`](#spacegetartifactresponsepayload) |
+| `SPACE_GET_DEBUG_ARTIFACT` | `space.get_debug_artifact` | Client → Gateway | [`SpaceGetDebugArtifactPayload`](#spacegetdebugartifactpayload) | [`SpaceGetDebugArtifactResponsePayload`](#spacegetdebugartifactresponsepayload) |
 | `SPACE_RESET` | `space.reset` | Client → Gateway | [`SpaceResetPayload`](#spaceresetpayload) | [`SpaceResetResponsePayload`](#spaceresetresponsepayload) |
 | `SPACE_RESET_AGENT_USAGE_SESSION` | `space.reset_agent_usage_session` | Client → Gateway | [`SpaceResetAgentUsageSessionPayload`](#spaceresetagentusagesessionpayload) | [`SpaceResetAgentUsageSessionResponsePayload`](#spaceresetagentusagesessionresponsepayload) |
 | `SPACE_GET_EFFECTIVE_TOOLS` | `space.get_effective_tools` | Client → Gateway | [`SpaceGetEffectiveToolsPayload`](#spacegeteffectivetoolspayload) | [`SpaceGetEffectiveToolsResponsePayload`](#spacegeteffectivetoolsresponsepayload) |
@@ -92,6 +115,7 @@ description: Protocol messages in the spaces family.
 | `visibility` | `"shared" \| "private"` | No | — |
 | `turnModelConfig` | `Record<string, unknown>` | No | — |
 | `maxTurns` | `number` | No | — |
+| `thinkingCapturePolicy` | `ThinkingCapturePolicy` | No | — |
 | `moderatorProfileId` | `string` | No | — |
 | `initialAgents` | `SpaceAddAgentPayload[]` | No | — |
 
@@ -193,6 +217,67 @@ description: Protocol messages in the spaces family.
 | `idempotencyKey` | `string` | No | — |
 | `spaceId` | `string` | Yes | — |
 | `profileId` | `string` | Yes | — |
+
+### SpaceSetThinkingCapturePolicyPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `idempotencyKey` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `thinkingCapturePolicy` | `ThinkingCapturePolicy` | Yes | — |
+
+### SpaceSetThinkingCapturePolicyResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `space` | `SpaceSummary` | Yes | — |
+
+### SpaceGetMemoryPolicyPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+
+### SpaceGetMemoryPolicyResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceId` | `string` | Yes | — |
+| `memoryPolicy` | `SpaceMemoryPolicy` | Yes | — |
+
+### SpaceSetMemoryPolicyPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `idempotencyKey` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `memoryPolicy` | `SpaceMemoryPolicy` | Yes | — |
+
+### SpaceSetMemoryPolicyResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `space` | `SpaceSummary` | Yes | — |
+
+### SpaceEndIncognitoSessionPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+
+### SpaceEndIncognitoSessionResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `space` | `SpaceSummary` | Yes | — |
+| `ended` | `boolean` | Yes | — |
+| `reason` | `string` | Yes | — |
+| `purgedAt` | `string` | No | — |
+| `sessionId` | `string` | No | — |
 
 ### SpaceListAgentAssignmentsPayload
 
@@ -478,6 +563,8 @@ description: Protocol messages in the spaces family.
 | `goal` | `string` | No | — |
 | `resourceId` | `string` | Yes | — |
 | `communicationMode` | `CommunicationModePayload` | Yes | — |
+| `conversationTopology` | `ConversationTopologyPayload` | No | — |
+| `promptPackId` | `string` | No | — |
 | `turnModel` | `string` | Yes | — |
 | `initialAgents` | `TemplateAgentDefinitionPayload[]` | Yes | — |
 
@@ -722,6 +809,27 @@ description: Protocol messages in the spaces family.
 | `agentSessions` | `AgentUsageSessionPayload[]` | No | — |
 | `globalLifetime` | `UsageWindowSummaryPayload` | No | — |
 
+### SpaceListActivityLogPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `turnId` | `string` | No | — |
+| `limit` | `number` | No | — |
+| `offset` | `number` | No | — |
+| `includeSystem` | `boolean` | No | — |
+
+### SpaceListActivityLogResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceId` | `string` | Yes | — |
+| `spaceUid` | `string` | No | — |
+| `entries` | `SpaceActivityLogEntryPayload[]` | Yes | — |
+| `total` | `number` | Yes | — |
+| `nextOffset` | `number` | No | — |
+
 ### SpaceGetTurnTracePayload
 
 | Field | Type | Required | Description |
@@ -737,6 +845,175 @@ description: Protocol messages in the spaces family.
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `trace` | `TurnTracePayload` | Yes | — |
+
+### SpaceListExperiencesPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `limit` | `number` | No | — |
+| `offset` | `number` | No | — |
+
+### SpaceListExperiencesResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceId` | `string` | Yes | — |
+| `experiences` | `SpaceExperiencePayload[]` | Yes | — |
+| `total` | `number` | Yes | — |
+| `nextOffset` | `number` | No | — |
+
+### SpaceGetExperiencePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `experienceId` | `string` | Yes | — |
+
+### SpaceGetExperienceResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `experience` | `SpaceExperiencePayload` | No | — |
+| `observations` | `SpaceExperienceObservationPayload[]` | Yes | — |
+
+### SpaceListInsightsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `status` | `string` | No | — |
+| `limit` | `number` | No | — |
+| `offset` | `number` | No | — |
+
+### SpaceListInsightsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `spaceId` | `string` | Yes | — |
+| `insights` | `SpaceInsightPayload[]` | Yes | — |
+| `total` | `number` | Yes | — |
+| `nextOffset` | `number` | No | — |
+
+### SpaceGetInsightPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `insightId` | `string` | Yes | — |
+
+### SpaceGetInsightResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `insight` | `SpaceInsightPayload` | No | — |
+
+### SpaceGetSpaceAgentNotesPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `agentId` | `string` | No | — |
+
+### SpaceGetSpaceAgentNotesResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `note` | `SpaceAgentNotePayload` | No | — |
+| `notes` | `SpaceAgentNotePayload[]` | Yes | — |
+
+### SpaceUpdateSpaceAgentNotesPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `agentId` | `string` | Yes | — |
+| `notes` | `string` | Yes | — |
+
+### SpaceUpdateSpaceAgentNotesResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `note` | `SpaceAgentNotePayload` | No | — |
+
+### SpaceGetUserProfilePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `principalId` | `string` | No | — |
+
+### SpaceGetUserProfileResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `profile` | `SpaceUserProfilePayload` | Yes | — |
+
+### SpaceUpdateUserProfilePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `principalId` | `string` | No | — |
+| `profile` | `Record<string, unknown>` | Yes | — |
+
+### SpaceUpdateUserProfileResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `profile` | `SpaceUserProfilePayload` | Yes | — |
+
+### SpaceListMemoriesPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `principalId` | `string` | No | — |
+| `spaceId` | `string` | No | — |
+| `agentId` | `string` | No | — |
+| `type` | `"episodic" \| "semantic" \| "procedural" \| "observation"` | No | — |
+| `limit` | `number` | No | — |
+| `offset` | `number` | No | — |
+
+### SpaceListMemoriesResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `memories` | `SpaceMemoryDocumentPayload[]` | Yes | — |
+| `total` | `number` | Yes | — |
+| `nextOffset` | `number` | No | — |
+
+### SpaceDeleteMemoryPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `memoryId` | `string` | Yes | — |
+
+### SpaceDeleteMemoryResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `deleted` | `boolean` | Yes | — |
+
+### SpaceUpdateMemoryImportancePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `memoryId` | `string` | Yes | — |
+| `importance` | `number` | Yes | — |
+
+### SpaceUpdateMemoryImportanceResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `memory` | `SpaceMemoryDocumentPayload` | No | — |
 
 ### SpaceListArtifactsPayload
 
@@ -764,6 +1041,20 @@ description: Protocol messages in the spaces family.
 | `artifactId` | `string` | Yes | — |
 
 ### SpaceGetArtifactResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `artifact` | `SpaceArtifactDetailPayload` | Yes | — |
+
+### SpaceGetDebugArtifactPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | Yes | — |
+| `artifactId` | `string` | Yes | — |
+
+### SpaceGetDebugArtifactResponsePayload
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -849,6 +1140,7 @@ description: Protocol messages in the spaces family.
 | `spaceId` | `string` | Yes | — |
 | `rules` | `ToolAccessRulePayload[]` | No | — |
 | `dangerousCapabilities` | `DangerousCapabilityRulePayload[]` | No | — |
+| `guestAccessPreset` | `"read_only" \| "collaborator"` | No | — |
 
 ### SpaceUpdateToolPolicyResponsePayload
 
@@ -862,7 +1154,7 @@ description: Protocol messages in the spaces family.
 |-------|------|----------|-------------|
 | `spaceId` | `string` | Yes | — |
 | `spaceUid` | `string` | Yes | — |
-| `state` | `string` | Yes | — |
+| `state` | `AgentActivityState` | Yes | — |
 | `turnCount` | `number` | Yes | — |
 | `activeAgentId` | `string` | No | — |
 | `pendingFeedback` | `number` | Yes | — |

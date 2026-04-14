@@ -5,7 +5,7 @@ description: Protocol messages in the scheduler family.
 
 <!-- AUTO-GENERATED — re-run: bun run docs:generate -->
 
-> 9 message types in the **scheduler** family.
+> 10 message types in the **scheduler** family.
 
 ## Overview
 
@@ -14,6 +14,7 @@ description: Protocol messages in the scheduler family.
 | `SCHEDULER_CREATE_JOB` | `scheduler.create_job` | Client → Gateway | [`SchedulerCreateJobPayload`](#schedulercreatejobpayload) | [`SchedulerCreateJobResponsePayload`](#schedulercreatejobresponsepayload) |
 | `SCHEDULER_GET_JOB` | `scheduler.get_job` | Client → Gateway | [`SchedulerGetJobPayload`](#schedulergetjobpayload) | [`SchedulerGetJobResponsePayload`](#schedulergetjobresponsepayload) |
 | `SCHEDULER_LIST_JOBS` | `scheduler.list_jobs` | Client → Gateway | [`SchedulerListJobsPayload`](#schedulerlistjobspayload) | [`SchedulerListJobsResponsePayload`](#schedulerlistjobsresponsepayload) |
+| `SCHEDULER_LIST_EVAL_DEFINITIONS` | `scheduler.list_eval_definitions` | Client → Gateway | [`SchedulerListEvalDefinitionsPayload`](#schedulerlistevaldefinitionspayload) | [`SchedulerListEvalDefinitionsResponsePayload`](#schedulerlistevaldefinitionsresponsepayload) |
 | `SCHEDULER_UPDATE_JOB` | `scheduler.update_job` | Client → Gateway | [`SchedulerUpdateJobPayload`](#schedulerupdatejobpayload) | [`SchedulerUpdateJobResponsePayload`](#schedulerupdatejobresponsepayload) |
 | `SCHEDULER_DELETE_JOB` | `scheduler.delete_job` | Client → Gateway | [`SchedulerDeleteJobPayload`](#schedulerdeletejobpayload) | [`SchedulerDeleteJobResponsePayload`](#schedulerdeletejobresponsepayload) |
 | `SCHEDULER_LINK_SPACE` | `scheduler.link_space` | Client → Gateway | [`SchedulerLinkSpacePayload`](#schedulerlinkspacepayload) | [`SchedulerLinkSpaceResponsePayload`](#schedulerlinkspaceresponsepayload) |
@@ -35,6 +36,9 @@ description: Protocol messages in the scheduler family.
 | `action` | `SchedulerActionPayload` | Yes | — |
 | `primarySpaceId` | `string` | Yes | — |
 | `relatedSpaceIds` | `string[]` | No | — |
+| `executionTarget` | `SchedulerExecutionTargetPayload` | No | — |
+| `calendarBinding` | `SchedulerCalendarBindingPayload` | No | — |
+| `evalConfig` | `SchedulerEvalConfigPayload` | No | — |
 
 ### SchedulerCreateJobResponsePayload
 
@@ -70,6 +74,18 @@ description: Protocol messages in the scheduler family.
 |-------|------|----------|-------------|
 | `jobs` | `SchedulerJobPayload[]` | Yes | — |
 
+### SchedulerListEvalDefinitionsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+
+### SchedulerListEvalDefinitionsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `definitions` | `SchedulerEvalDefinitionPayload[]` | Yes | — |
+
 ### SchedulerUpdateJobPayload
 
 | Field | Type | Required | Description |
@@ -84,6 +100,9 @@ description: Protocol messages in the scheduler family.
 | `action` | `SchedulerActionPayload` | No | — |
 | `primarySpaceId` | `string \| null` | No | — |
 | `relatedSpaceIds` | `string[]` | No | — |
+| `executionTarget` | `SchedulerExecutionTargetPayload` | No | — |
+| `calendarBinding` | `SchedulerCalendarBindingPayload \| null` | No | — |
+| `evalConfig` | `SchedulerEvalConfigPayload \| null` | No | — |
 
 ### SchedulerUpdateJobResponsePayload
 

@@ -5,7 +5,7 @@ description: Protocol messages in the gateway family.
 
 <!-- AUTO-GENERATED — re-run: bun run docs:generate -->
 
-> 47 message types in the **gateway** family.
+> 53 message types in the **gateway** family.
 
 ## Overview
 
@@ -17,10 +17,16 @@ description: Protocol messages in the gateway family.
 | `GATEWAY_SKILL_DELETE` | `gateway.skill_delete` | Client → Gateway | [`GatewaySkillDeletePayload`](#gatewayskilldeletepayload) | [`GatewaySkillDeleteResponsePayload`](#gatewayskilldeleteresponsepayload) |
 | `GATEWAY_DISCOVER_LOCAL_AGENTS` | `gateway.discover_local_agents` | Client → Gateway | [`GatewayDiscoverLocalAgentsPayload`](#gatewaydiscoverlocalagentspayload) | [`GatewayDiscoverLocalAgentsResponsePayload`](#gatewaydiscoverlocalagentsresponsepayload) |
 | `GATEWAY_LIST_PROVIDER_CONFIGS` | `gateway.list_provider_configs` | Client → Gateway | [`GatewayListProviderConfigsPayload`](#gatewaylistproviderconfigspayload) | [`GatewayListProviderConfigsResponsePayload`](#gatewaylistproviderconfigsresponsepayload) |
+| `GATEWAY_GET_RUNTIME_DEFAULTS` | `gateway.get_runtime_defaults` | Client → Gateway | [`GatewayGetRuntimeDefaultsPayload`](#gatewaygetruntimedefaultspayload) | [`GatewayGetRuntimeDefaultsResponsePayload`](#gatewaygetruntimedefaultsresponsepayload) |
+| `GATEWAY_SET_RUNTIME_DEFAULTS` | `gateway.set_runtime_defaults` | Client → Gateway | [`GatewaySetRuntimeDefaultsPayload`](#gatewaysetruntimedefaultspayload) | [`GatewaySetRuntimeDefaultsResponsePayload`](#gatewaysetruntimedefaultsresponsepayload) |
 | `GATEWAY_GET_MAIN_AGENT` | `gateway.get_main_agent` | Client → Gateway | [`GatewayGetMainAgentPayload`](#gatewaygetmainagentpayload) | [`GatewayGetMainAgentResponsePayload`](#gatewaygetmainagentresponsepayload) |
 | `GATEWAY_SET_MAIN_AGENT` | `gateway.set_main_agent` | Client → Gateway | [`GatewaySetMainAgentPayload`](#gatewaysetmainagentpayload) | [`GatewaySetMainAgentResponsePayload`](#gatewaysetmainagentresponsepayload) |
+| `GATEWAY_GET_CONCIERGE_AGENT` | `gateway.get_concierge_agent` | Client → Gateway | [`GatewayGetConciergeAgentPayload`](#gatewaygetconciergeagentpayload) | [`GatewayGetConciergeAgentResponsePayload`](#gatewaygetconciergeagentresponsepayload) |
+| `GATEWAY_SET_CONCIERGE_AGENT` | `gateway.set_concierge_agent` | Client → Gateway | [`GatewaySetConciergeAgentPayload`](#gatewaysetconciergeagentpayload) | [`GatewaySetConciergeAgentResponsePayload`](#gatewaysetconciergeagentresponsepayload) |
 | `GATEWAY_LIST_AVAILABLE_MODELS` | `gateway.list_available_models` | Client → Gateway | [`GatewayListAvailableModelsPayload`](#gatewaylistavailablemodelspayload) | [`GatewayListAvailableModelsResponsePayload`](#gatewaylistavailablemodelsresponsepayload) |
 | `GATEWAY_LIST_PROVIDER_CATALOGS` | `gateway.list_provider_catalogs` | Client → Gateway | [`GatewayListProviderCatalogsPayload`](#gatewaylistprovidercatalogspayload) | [`GatewayListProviderCatalogsResponsePayload`](#gatewaylistprovidercatalogsresponsepayload) |
+| `GATEWAY_LIST_INTERCONNECTORS` | `gateway.list_interconnectors` | Client → Gateway | [`GatewayListInterconnectorsPayload`](#gatewaylistinterconnectorspayload) | [`GatewayListInterconnectorsResponsePayload`](#gatewaylistinterconnectorsresponsepayload) |
+| `GATEWAY_RESCAN_INTERCONNECTORS` | `gateway.rescan_interconnectors` | Client → Gateway | [`GatewayRescanInterconnectorsPayload`](#gatewayrescaninterconnectorspayload) | [`GatewayRescanInterconnectorsResponsePayload`](#gatewayrescaninterconnectorsresponsepayload) |
 | `GATEWAY_CREATE_INTEGRATION_REQUEST` | `gateway.create_integration_request` | Client → Gateway | [`GatewayCreateIntegrationRequestPayload`](#gatewaycreateintegrationrequestpayload) | [`GatewayCreateIntegrationRequestResponsePayload`](#gatewaycreateintegrationrequestresponsepayload) |
 | `GATEWAY_LIST_INTEGRATION_REQUESTS` | `gateway.list_integration_requests` | Client → Gateway | [`GatewayListIntegrationRequestsPayload`](#gatewaylistintegrationrequestspayload) | [`GatewayListIntegrationRequestsResponsePayload`](#gatewaylistintegrationrequestsresponsepayload) |
 | `GATEWAY_GET_PROVIDER_TELEMETRY` | `gateway.get_provider_telemetry` | Client → Gateway | [`GatewayGetProviderTelemetryPayload`](#gatewaygetprovidertelemetrypayload) | [`GatewayGetProviderTelemetryResponsePayload`](#gatewaygetprovidertelemetryresponsepayload) |
@@ -148,6 +154,34 @@ description: Protocol messages in the gateway family.
 |-------|------|----------|-------------|
 | `configs` | `ProviderRuntimeConfigPayload[]` | Yes | — |
 
+### GatewayGetRuntimeDefaultsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+
+### GatewayGetRuntimeDefaultsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `defaults` | `GatewayRuntimeDefaultsPayload` | Yes | — |
+
+### GatewaySetRuntimeDefaultsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `main` | `GatewayRuntimeDefaultSelectionPayload` | No | — |
+| `concierge` | `GatewayRuntimeDefaultSelectionPayload` | No | — |
+
+### GatewaySetRuntimeDefaultsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `defaults` | `GatewayRuntimeDefaultsPayload` | Yes | — |
+| `mainAgentState` | `GatewayMainAgentStatePayload` | Yes | — |
+| `conciergeAgentState` | `GatewayConciergeAgentStatePayload` | Yes | — |
+
 ### GatewayGetMainAgentPayload
 
 | Field | Type | Required | Description |
@@ -171,8 +205,8 @@ description: Protocol messages in the gateway family.
 | `selectionMode` | `MainAgentSelectionMode` | Yes | — |
 | `providerId` | `string` | No | — |
 | `modelId` | `string` | No | — |
-| `sourceProfileId` | `string` | No | — |
-| `copyPersonality` | `boolean` | No | — |
+| `sourceAgentDefinitionId` | `string` | No | — |
+| `applyPersonaInstructions` | `boolean` | No | — |
 
 ### GatewaySetMainAgentResponsePayload
 
@@ -180,12 +214,45 @@ description: Protocol messages in the gateway family.
 |-------|------|----------|-------------|
 | `state` | `GatewayMainAgentStatePayload` | Yes | — |
 
+### GatewayGetConciergeAgentPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | No | — |
+| `repairIfMissing` | `boolean` | No | — |
+
+### GatewayGetConciergeAgentResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `state` | `GatewayConciergeAgentStatePayload` | Yes | — |
+
+### GatewaySetConciergeAgentPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+| `spaceId` | `string` | No | — |
+| `selectionMode` | `ConciergeAgentSelectionMode` | Yes | — |
+| `providerId` | `string` | No | — |
+| `modelId` | `string` | No | — |
+| `sourceAgentDefinitionId` | `string` | No | — |
+| `applyPersonaInstructions` | `boolean` | No | — |
+
+### GatewaySetConciergeAgentResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `state` | `GatewayConciergeAgentStatePayload` | Yes | — |
+
 ### GatewayListAvailableModelsPayload
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
 | `providerId` | `string` | No | — |
+| `refresh` | `boolean` | No | — |
 
 ### GatewayListAvailableModelsResponsePayload
 
@@ -200,12 +267,39 @@ description: Protocol messages in the gateway family.
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
 | `providerId` | `string` | No | — |
+| `refresh` | `boolean` | No | — |
 
 ### GatewayListProviderCatalogsResponsePayload
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `providers` | `GatewayModelProviderCatalogPayload[]` | Yes | — |
+| `generatedAt` | `string` | Yes | — |
+
+### GatewayListInterconnectorsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+
+### GatewayListInterconnectorsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `interconnectors` | `GatewayInterconnectorBundlePayload[]` | Yes | — |
+| `generatedAt` | `string` | Yes | — |
+
+### GatewayRescanInterconnectorsPayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `apiVersion` | `string` | No | — |
+
+### GatewayRescanInterconnectorsResponsePayload
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `interconnectors` | `GatewayInterconnectorBundlePayload[]` | Yes | — |
 | `generatedAt` | `string` | Yes | — |
 
 ### GatewayCreateIntegrationRequestPayload
@@ -259,6 +353,7 @@ description: Protocol messages in the gateway family.
 |-------|------|----------|-------------|
 | `apiVersion` | `string` | No | — |
 | `providerId` | `string` | No | — |
+| `providerIds` | `string[]` | No | — |
 
 ### GatewayGetLocalUsageTelemetryResponsePayload
 
@@ -289,6 +384,7 @@ description: Protocol messages in the gateway family.
 | `model` | `string` | No | — |
 | `apiKey` | `string` | No | — |
 | `apiKeySecretRef` | `string` | No | — |
+| `authMode` | `GatewayProviderAuthModePayload` | No | — |
 | `baseURL` | `string` | No | — |
 | `allowedModels` | `string[]` | No | — |
 | `allowCustomModel` | `boolean` | No | — |
@@ -309,6 +405,7 @@ description: Protocol messages in the gateway family.
 | `model` | `string` | No | — |
 | `apiKey` | `string` | No | — |
 | `apiKeySecretRef` | `string` | No | — |
+| `authMode` | `GatewayProviderAuthModePayload` | No | — |
 | `baseURL` | `string` | No | — |
 | `allowedModels` | `string[]` | No | — |
 | `allowCustomModel` | `boolean` | No | — |

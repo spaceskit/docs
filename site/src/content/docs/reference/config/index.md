@@ -154,9 +154,3 @@ description: All 68 environment variables for configuring the Spaceskit gateway.
 | Variable | Default | Required | Description |
 |----------|---------|----------|-------------|
 | `SPACESKIT_WORKSPACE_LOG_DEBUG` | `false` | No | Include full payload bodies in workspace logs |
-
-## Undocumented Variables
-
-These variables are referenced in bootstrap code but not documented in `.env.example`:
-
-- `SPACESKIT_COLLAB_MAINTENANCE_TICK_MS` — Referenced in bootstrap code but missing from .env.example
